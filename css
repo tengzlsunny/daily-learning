@@ -1,0 +1,5 @@
+1.IE6 双边距问题（margin左右值会比设定的值大一倍）
+  出现原因：块级元素，float(left, right)，设置了margin(left, right)值
+  解决方法： 块级元素转变成行内元素（display: inline）
+  
+2.
