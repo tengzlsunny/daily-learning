@@ -1,0 +1,30 @@
+table的表头添加气泡
+getBubble (arr) {
+  for (let i in arr) {
+    let item = arr[i]
+    if (item.bubble) {
+      let bubble = item.bubble.replace(/(\n|\r\n|\r)/, '<br />')
+      item.renderHeader = (h, params) => {
+        return h('Tooltip', {
+          class: 'tooltip_tree',
+          props: {
+            transfer: true,
+            placement: 'top',
+            maxWidth: 260
+          }
+        }, [h('span', {
+          slot: 'content'
+        }, [h('span', {
+          domProps: {
+            innerHTML: bubble
+          }
+        })]),
+        h('span', item.title)])
+      }
+    }
+    if (arr.children && arr.children.length) {
+      this.getBubble(arr.children)
+    }
+    if (i === arr.length - 1 && !arr.children) return
+  }
+}
